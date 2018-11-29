@@ -3,7 +3,7 @@ import 'package:green_scene/fragments/misc_fragment.dart';
 import 'package:green_scene/fragments/reports_fragment.dart';
 import 'package:green_scene/fragments/resources_fragment.dart';
 import 'package:green_scene/fragments/spaces_fragment.dart';
-import 'package:green_scene/fragments/travel/travel_fragment.dart';
+import 'package:green_scene/fragments/travel_fragment.dart';
 import 'package:green_scene/fragments/home_fragment.dart';
 
 
