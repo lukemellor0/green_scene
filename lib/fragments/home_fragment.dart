@@ -1,56 +1,110 @@
 import 'package:flutter/material.dart';
 
-
-import './tabs/HomeTab1.dart';
-import './tabs/HomeTab2.dart';
-import './tabs/HomeTab3.dart';
-import './travel/flights.dart';
-
-
 class HomeFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-            children: [
-              Container(
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.greenAccent,
-                  child: new Align(
-                    alignment: Alignment.center,
-                    child: new Text(
-                        "NEW REPORT"
-                    ),
-                  )
-              ),
-            ]
-        ),
-        Row(
-            children: [
-              new ButtonBar(
-                alignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new OutlineButton(
-                    onPressed: null,
-                    child: new Text(
-                      "Login",
-                      style: new TextStyle(color: Colors.white),
-                    ),
+        Container(
+            padding: EdgeInsets.all(30.0),
+            child: Container(
+            padding: EdgeInsets.all(5.0),
+            color: Colors.greenAccent,
+            child: Column(
+              children: [
+                Center(
+                  child: Title(color: Colors.white, child: new Text('New Report'))
+                ),
+                Center(
+                  child: new ButtonBar(
+                    mainAxisSize: MainAxisSize.min, // this will take space as minimum as posible(to center)
+                    children: <Widget>[
+                      new RaisedButton(
+                        child: new Icon(Icons.airplanemode_active),
+                        onPressed: null,
+                      ),
+                      new RaisedButton(
+                        child: new Icon(Icons.location_city),
+                        onPressed: null,
+                      ),
+                      new RaisedButton(
+                        child: new Icon(Icons.business_center),
+                        onPressed: null,
+                      )
+                    ],
                   ),
-                  new RaisedButton(
-                    color: Colors.white,
-                    onPressed: null,
-                    child: new Text(
-                      "Register",
-                      style: new TextStyle(color: Colors.black),
-                    ),
-                  )
-                ],
-              ),
-            ]
+                )
+              ]
+            )
+          )
         ),
+        Container(
+            padding: EdgeInsets.all(30.0),
+            child: Container(
+                padding: EdgeInsets.all(5.0),
+                color: Colors.greenAccent,
+                child: Column(
+                    children: [
+                      Center(
+                          child: Title(color: Colors.white, child: new Text('Past reports'))
+                      ),
+                      Center(
+                        child: new ButtonBar(
+                          mainAxisSize: MainAxisSize.min, // this will take space as minimum as posible(to center)
+                          children: <Widget>[
+                            new RaisedButton(
+                              child: new Icon(Icons.airplanemode_active),
+                              onPressed: null,
+                            ),
+                            new RaisedButton(
+                              child: new Icon(Icons.location_city),
+                              onPressed: null,
+                            ),
+                            new RaisedButton(
+                              child: new Icon(Icons.business_center),
+                              onPressed: null,
+                            )
+                          ],
+                        ),
+                      )
+                    ]
+                )
+            )
+        ),
+        Container(
+            padding: EdgeInsets.all(30.0),
+            child: Container(
+                padding: EdgeInsets.all(5.0),
+                color: Colors.greenAccent,
+                child: Column(
+                    children: [
+                      Center(
+                          child: Title(color: Colors.white, child: new Text('Resources'))
+                      ),
+                      Center(
+                        child: new ButtonBar(
+                          mainAxisSize: MainAxisSize.min, // this will take space as minimum as posible(to center)
+                          children: <Widget>[
+                            new RaisedButton(
+                              child: new Icon(Icons.airplanemode_active),
+                              onPressed: null,
+                            ),
+                            new RaisedButton(
+                              child: new Icon(Icons.location_city),
+                              onPressed: null,
+                            ),
+                            new RaisedButton(
+                              child: new Icon(Icons.business_center),
+                              onPressed: null,
+                            )
+                          ],
+                        ),
+                      )
+                    ]
+                )
+            )
+        )
       ],
     );
   }

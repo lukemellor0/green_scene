@@ -45,6 +45,7 @@ class Flights extends StatelessWidget {
         top: false,
         bottom: false,
         child: new ListView(
+          padding: EdgeInsets.all(30.0),
           children: <Widget>[
             new Form(
                 key: _formKey,
@@ -103,7 +104,7 @@ class Flights extends StatelessWidget {
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0, right: 40.0),
                         child: new RaisedButton(
-                          child: const Text('Submit'),
+                          child: const Text('Calculate'),
                           onPressed:(){
                             calculate();
                             totalController.text = total.toString();
@@ -111,7 +112,8 @@ class Flights extends StatelessWidget {
                         )
                     ),
                     new TextFormField(
-                        controller: totalController
+                      controller: totalController,
+                      enabled: false,
                     ),
                   ],
                 )

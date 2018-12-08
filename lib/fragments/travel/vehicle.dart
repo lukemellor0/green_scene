@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class Vehicle extends StatelessWidget {
 
-
   //air travel logic
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   bool switchValue = false;
   List<String> _vehicles = <String>['','Petrol', 'Diesel', 'Hybrid', 'Motorcycle', 'Offroader 4x4', 'Sports'];
+  List<String> _metrics = <String>['Miles' , 'Kilometers'];
+  String _metric = 'Miles';
   String _vehicle = '';
   num total;
   final myController = TextEditingController();
   final totalController = TextEditingController();
-//  Key _inputKey = new GlobalKey(debugLabel: 'inputText');
-  int _radioValue = 0;
+
   double _result = 0.0;
   Key _k1 = new GlobalKey();
   Key _k2 = new GlobalKey();
@@ -43,26 +43,11 @@ class Vehicle extends StatelessWidget {
 
   calculate(){
     var vehicleType = getVehicleType();
-    switchValue ? vehicleType = vehicleType * 2 : null;
-    total = (int.parse(myController.text) * vehicleType) / 1000;
-  }
-
-  _handleRadioValueChange(value) {
-
-      _radioValue = value;
-
-      switch (value) {
-        case 0:
-          _result = 0.0;
-        break;
-        case 1:
-          _result = 0.0;
-        break;
-        default:
-          _result = 0.0;
-        break;
+    var distance = (double.parse(myController.text));
+    if(_metric == "Miles"){
+      distance = toKM(distance);
     }
-
+    total =  (distance * vehicleType) / 1000;
   }
 
   @override
@@ -77,6 +62,7 @@ class Vehicle extends StatelessWidget {
             key: _formKey,
             autovalidate: true,
             child: new ListView(
+              padding: EdgeInsets.all(30.0),
               children: <Widget>[
                 new TextFormField(
                   key: _k1,
@@ -95,19 +81,32 @@ class Vehicle extends StatelessWidget {
                         labelText: 'KM Driven'
                     )
                 ),
-                new Column(
-                  children: <Widget>[
-                  new Radio(
-                  value: 0,
-                  groupValue: _radioValue,
-                  onChanged: _handleRadioValueChange(0),
-                  ),
-                  new Radio(
-                  value: 1,
-                  groupValue: _radioValue,
-                  onChanged: _handleRadioValueChange(1),
-                  )
-                ]),
+                new FormField(
+                  builder: (FormFieldState state) {
+                    return InputDecorator(
+                      decoration: InputDecoration(
+                        labelText: 'Distance metric',
+                      ),
+                      isEmpty: _metric == '',
+                      child: new DropdownButtonHideUnderline(
+                        child: new DropdownButton(
+                          value: _metric,
+                          isDense: true,
+                          onChanged: (String newValue) {
+                            _metric = newValue;
+                            state.didChange(newValue);
+                          },
+                          items: _metrics.map((String value) {
+                            return new DropdownMenuItem(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 new FormField(
                   builder: (FormFieldState state) {
                     return InputDecorator(
@@ -137,7 +136,7 @@ class Vehicle extends StatelessWidget {
                 new Container(
                     padding: const EdgeInsets.only(left: 40.0, top: 20.0, right: 40.0),
                     child: new RaisedButton(
-                      child: const Text('Submit'),
+                      child: const Text('Calculate'),
                       onPressed:(){
                         calculate();
                         totalController.text = total.toString();
@@ -145,7 +144,8 @@ class Vehicle extends StatelessWidget {
                     )
                 ),
                 new TextFormField(
-                    controller: totalController
+                  controller: totalController,
+                  enabled: false,
                 ),
               ],
             )

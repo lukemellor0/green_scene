@@ -6,7 +6,7 @@ import './tabs/HomeTab1.dart';
 import './tabs/HomeTab2.dart';
 import './tabs/HomeTab3.dart';
 import './travel/flights.dart';
-
+import './travel/commute.dart';
 
 class TravelFragment extends StatelessWidget {
   @override
@@ -29,7 +29,7 @@ class TravelFragment extends StatelessWidget {
             children: <Widget>[
               new Flights(),
               new Vehicle(),
-              new HomeTab3(),
+              new Commute()
             ],
           ))
     );
